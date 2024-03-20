@@ -43,7 +43,7 @@ public class TelegramBot extends TelegramLongPollingBot {
     @SneakyThrows
     public void onUpdateReceived(Update update) {
         long chatId;
-        ;
+
         String userName;
         String receivedMessage;
 
