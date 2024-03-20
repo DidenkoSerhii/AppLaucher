@@ -7,10 +7,6 @@ public class UserServices {
 
     private static final Map<Long, UserModel> USERS_SETTINGS = new HashMap<>();
 
-    public static UserModel getUserSettingsById(long chatId) {
-        return USERS_SETTINGS.get(chatId);
-    }
-
     public static boolean isUserSettingsExists(long chatId) {
         return USERS_SETTINGS.containsKey(chatId);
     }
@@ -21,8 +17,5 @@ public class UserServices {
             USERS_SETTINGS.put(chatId, userModel);
         }
     }
-
-    public static String toNumberFormat(long chatId) {
-        return null;
-    }
 }
+

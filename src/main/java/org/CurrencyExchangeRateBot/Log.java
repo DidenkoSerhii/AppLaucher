@@ -16,11 +16,4 @@ public class Log {
                 "\nReply to username: " + name + "\n" +
                 "using text: " + text);
     }
-    public static void button(String name, String callbackData) {
-        System.out.println("\nLOG.INFO: " + new Timestamp(System.currentTimeMillis()) +
-                "\nReply to username: " + name +  "\n" +
-                "using button: " + callbackData);
-    }
 }
-
-

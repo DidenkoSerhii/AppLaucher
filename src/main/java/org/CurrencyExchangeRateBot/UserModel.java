@@ -2,10 +2,10 @@ package org.CurrencyExchangeRateBot;
 
 public class UserModel {
 
-    private String bank;
-        private String currency;
-        private String time;
-        private String number;
+    final String currency;
+        final String bank;
+        final String time;
+        final String number;
 
     public UserModel() {
         this.currency = "USD";

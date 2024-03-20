@@ -1,7 +1,5 @@
 package org.CurrencyExchangeRateBot;
 
-
-
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 
@@ -11,8 +9,8 @@ public class MessageBuilder {
     private static TelegramBot telegramBot;
 
     public MessageBuilder(TelegramBot telegramBot) {
-        this.sendMessage = new SendMessage();
-        this.telegramBot = telegramBot;
+        sendMessage = new SendMessage();
+        MessageBuilder.telegramBot = telegramBot;
     }
 
     public static void sendMessage(long chatId, String answer, InlineKeyboardMarkup button) {

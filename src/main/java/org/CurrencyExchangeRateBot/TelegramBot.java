@@ -43,7 +43,7 @@ public class TelegramBot extends TelegramLongPollingBot {
     @SneakyThrows
     public void onUpdateReceived(Update update) {
         long chatId;
-        long messageId;
+        ;
         String userName;
         String receivedMessage;
 
@@ -57,11 +57,10 @@ public class TelegramBot extends TelegramLongPollingBot {
 
         if (update.hasCallbackQuery()) {
             chatId = update.getCallbackQuery().getMessage().getChatId();
-            userName = update.getCallbackQuery().getFrom().getFirstName();
-            receivedMessage = update.getCallbackQuery().getData();
-            messageId = update.getCallbackQuery().getMessage().getMessageId();
 
-            processHandler.callbackQuery(receivedMessage, userName, chatId, messageId);
+            receivedMessage = update.getCallbackQuery().getData();
+
+            processHandler.callbackQuery(receivedMessage, chatId);
         }
     }
 

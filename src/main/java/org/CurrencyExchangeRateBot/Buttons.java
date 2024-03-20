@@ -14,11 +14,6 @@ public class Buttons {
                 });
     }
 
-    public static InlineKeyboardMarkup info() {
-        return InlineKeyboardMarkupBuilder.buildMarkup(
-                new String[]{" Налаштування"});
-    }
-
     public static InlineKeyboardMarkup start() {
         return InlineKeyboardMarkupBuilder.buildMarkup(
                 new String[]{" Отримати інфо", " Налаштування"});

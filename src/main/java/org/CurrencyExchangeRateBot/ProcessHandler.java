@@ -11,7 +11,7 @@ public class ProcessHandler {
     public void message(String messageText, String username, long chatId) {
         switch (messageText) {
             case "/start" -> botCommands.start(chatId);
-            case "/info" -> botCommands.infoMessage(chatId);
+
             case "/setting" -> botCommands.settingsMessage(chatId);
         }
 
@@ -19,10 +19,9 @@ public class ProcessHandler {
         Log.Info(username, messageText);
     }
 
-
-    public void callbackQuery(String callbackData, String userName, long chatIdBackQuery, long messageId) {
+    public void callbackQuery(String callbackData, long chatIdBackQuery) {
         switch (callbackData) {
-            case " ОТРИМАТИ ІНФО" -> botCommands.infoMessage(chatIdBackQuery);
+
             case " НАЛАШТУВАННЯ", " НАЗАД" -> botCommands.settingsMessage(chatIdBackQuery);
         }
     }
