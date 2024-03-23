@@ -2,6 +2,8 @@ package org.CurrencyExchangeRateBot;
 
 import org.CurrencyExchangeRateBot.MonoBank.MonoJson;
 import org.CurrencyExchangeRateBot.MonoBank.ResponseMono;
+import org.CurrencyExchangeRateBot.NBU.NBUJson;
+import org.CurrencyExchangeRateBot.NBU.ResponseNBU;
 import org.CurrencyExchangeRateBot.Privat24.PrivatJson;
 import org.CurrencyExchangeRateBot.Privat24.ResponsePrivat;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -9,8 +11,7 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import java.io.IOException;
 import java.util.List;
 
-import static org.CurrencyExchangeRateBot.BotConstant.MONO_API;
-import static org.CurrencyExchangeRateBot.BotConstant.PRIVAT_API;
+import static org.CurrencyExchangeRateBot.BotConstant.*;
 
 public class BotCommands {
     final SendMessage sendMessage;
@@ -105,7 +106,37 @@ public class BotCommands {
                 MessageBuilder.sendMessage(chatId, String.valueOf(textForMessage), Buttons.start());
             }
         } else if(user.bank.equalsIgnoreCase("НБУ")) { //Блок для НБУ
-            //TODO
+            List<NBUJson> currencies = ResponseNBU.get(NBU_API);
+
+            if(user.currency.equals("USD")){
+
+
+                for (NBUJson currency : currencies) {
+
+                    if (currency.getCc().equals("USD")) {
+                        MessageBuilder.sendMessage(chatId, "Курс в НБУ: USD/UAH\nКупівля: " + currency.getRate(), Buttons.start());
+                    }
+                }
+            } else if(user.currency.equals("EUR")) {
+
+                for (NBUJson currency : currencies) {
+
+                    if (currency.getCc().equals("EUR")) {
+                        MessageBuilder.sendMessage(chatId, "Курс в НБУ: EUR/UAH\nКупівля: " + currency.getRate(), Buttons.start());
+                    }
+                }
+            } else if(user.currency.contains("USD") && user.currency.contains("EUR")) {
+                StringBuilder textForMessage = new StringBuilder();
+                for (NBUJson currency : currencies) {
+
+                    if (currency.getCc().equals("USD")) {
+                        textForMessage.append("Курс в НБУ: USD/UAH\nКупівля: ").append(currency.getRate()).append("\n");
+                    } else {
+                        textForMessage.append("Курс в НБУ: EUR/UAH\nКупівля: ").append(currency.getRate()).append("\n");
+                    }
+                }
+                MessageBuilder.sendMessage(chatId, String.valueOf(textForMessage), Buttons.start());
+            }
         }
 
 
