@@ -27,22 +27,15 @@ public class ResponseNBU {
             }
 
             ObjectMapper mapper = new ObjectMapper();
-            try {
-                List<NBUJson> responseList = mapper.readValue(String.valueOf(responseJson), new TypeReference<>() {});
-                List<NBUJson> USDAndEURList = new ArrayList<>();
-                for (NBUJson currency : responseList) {
-                    if(currency.getCc().equals("USD") || currency.getCc().equals("EUR")) {
-                        USDAndEURList.add(currency);
-                    }
+            List<NBUJson> responseList = mapper.readValue(String.valueOf(responseJson), new TypeReference<>() {});
+            List<NBUJson> USDAndEURList = new ArrayList<>();
+            for (NBUJson currency : responseList) {
+                if(currency.getCc().equals("USD") || currency.getCc().equals("EUR")) {
+                    USDAndEURList.add(currency);
                 }
-                return USDAndEURList;
-
-            } catch (IOException e) {
-                e.printStackTrace();
             }
+            return USDAndEURList;
 
-        } else {
-            //TODO
         }
         return null;
     }

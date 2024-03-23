@@ -2,7 +2,6 @@ package org.CurrencyExchangeRateBot.MonoBank;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.CurrencyExchangeRateBot.MonoBank.MonoJson;
 
 import javax.net.ssl.HttpsURLConnection;
 import java.io.BufferedReader;
@@ -28,20 +27,13 @@ public class ResponseMono {
             }
 
             ObjectMapper mapper = new ObjectMapper();
-            try {
-                List<MonoJson> responseList = mapper.readValue(String.valueOf(responseJson), new TypeReference<>() {});
-                List<MonoJson> USDAndEURList = new ArrayList<>();
-                for (int i = 0; i < 2; i++) {
-                    USDAndEURList.add(responseList.get(i));
-                }
-                return USDAndEURList;
-                
-            } catch (IOException e) {
-                e.printStackTrace();
+            List<MonoJson> responseList = mapper.readValue(String.valueOf(responseJson), new TypeReference<>() {});
+            List<MonoJson> USDAndEURList = new ArrayList<>();
+            for (int i = 0; i < 2; i++) {
+                USDAndEURList.add(responseList.get(i));
             }
+            return USDAndEURList;
 
-        } else {
-            //TODO
         }
         return null;
     }

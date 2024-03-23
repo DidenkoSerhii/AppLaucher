@@ -26,15 +26,8 @@ public class ResponsePrivat {
             }
 
             ObjectMapper mapper = new ObjectMapper();
-            try {
-                return mapper.readValue(String.valueOf(responseJson), new TypeReference<>() {});
+            return mapper.readValue(String.valueOf(responseJson), new TypeReference<>() {});
 
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-        } else {
-            //TODO
         }
         return null;
     }
