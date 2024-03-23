@@ -60,7 +60,7 @@ public class TelegramBot extends TelegramLongPollingBot {
 
             receivedMessage = update.getCallbackQuery().getData();
 
-            processHandler.callbackQuery(receivedMessage, chatId);
+            processHandler.callbackQuery(receivedMessage, chatId, chatId);
         }
     }
 

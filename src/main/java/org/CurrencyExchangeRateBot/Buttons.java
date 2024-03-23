@@ -3,8 +3,6 @@ package org.CurrencyExchangeRateBot;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 
 
-
-
 public class Buttons {
     public static InlineKeyboardMarkup setting() {
         return InlineKeyboardMarkupBuilder.buildMarkup(
@@ -23,5 +21,9 @@ public class Buttons {
                 new String[]{
                         "ПриватБанк", "НБУ", "Монобанк"
                 });
+    }
+
+    public static InlineKeyboardMarkup currency(long chatId) {
+        return InlineKeyboardMarkupBuilder.buildCurrencyMarkup(chatId);
     }
 }

@@ -22,4 +22,25 @@ public class InlineKeyboardMarkupBuilder {
 
         return markup;
     }
+
+    public static InlineKeyboardMarkup buildCurrencyMarkup(long chatId) {
+        UserModel userModel = UserServices.getUserSettings(chatId);
+        String[] currencies = {"USD", "EUR"};
+        List<List<InlineKeyboardButton>> keyboard = new ArrayList<>();
+
+        for (String currency : currencies) {
+            InlineKeyboardButton button = new InlineKeyboardButton();
+            boolean isSelected = userModel.isCurrencySelected(currency);
+            button.setText(currency + (isSelected ? " ✅" : ""));
+            button.setCallbackData(currency);
+            List<InlineKeyboardButton> row = new ArrayList<>();
+            row.add(button);
+            keyboard.add(row);
+        }
+
+        InlineKeyboardMarkup markup = new InlineKeyboardMarkup();
+        markup.setKeyboard(keyboard);
+
+        return markup;
+    }
 }

@@ -41,4 +41,8 @@ public class BotCommands {
         MessageBuilder.sendMessage(chatId, "Банк", Buttons.banks());
     }
 
+    public void currencyMessage(long chatId) {
+        MessageBuilder.sendMessage(chatId, "Виберіть валюту", Buttons.currency(chatId));
+    }
+
 }

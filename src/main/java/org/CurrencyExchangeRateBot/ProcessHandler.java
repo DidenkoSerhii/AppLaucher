@@ -19,7 +19,7 @@ public class ProcessHandler {
         Log.Info(username, messageText);
     }
 
-    public void callbackQuery(String callbackData, long chatIdBackQuery) {
+    public void callbackQuery(String callbackData, long chatIdBackQuery, long chatId) {
         switch (callbackData) {
 
             case " НАЛАШТУВАННЯ", " НАЗАД" -> botCommands.settingsMessage(chatIdBackQuery);
@@ -28,6 +28,13 @@ public class ProcessHandler {
             case "МОНОБАНК" -> botCommands.monobankMessage(chatIdBackQuery);
             case "НБУ" -> botCommands.nbuMessage(chatIdBackQuery);
             case "ПРИВАТБАНК" -> botCommands.privatbankMessage(chatIdBackQuery);
+            case " ВАЛЮТА" -> botCommands.currencyMessage(chatId);
+            default -> {
+                if (callbackData.equals("USD") || callbackData.equals("EUR")) {
+                    UserServices.getUserSettings(chatId).toggleCurrency(callbackData);
+                    botCommands.currencyMessage(chatId);
+                }
+            }
         }
     }
 }
