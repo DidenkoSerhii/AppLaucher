@@ -8,7 +8,7 @@ public class UserModel {
 
     public UserModel() {
         this.currency = "EUR USD";
-        this.bank = "Моно";
+        this.bank = "Приват";
         this.time = "Вимкнути сповіщення";
         this.number = "2";
     }

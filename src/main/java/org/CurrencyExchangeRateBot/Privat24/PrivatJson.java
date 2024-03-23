@@ -12,11 +12,11 @@ public class PrivatJson {
         return ccy;
     }
 
-    public String getBuy() {
-        return buy;
+    public float getBuy() {
+        return Float.parseFloat(buy);
     }
 
-    public String getSale() {
-        return sale;
+    public float getSale() {
+        return Float.parseFloat(sale);
     }
 }

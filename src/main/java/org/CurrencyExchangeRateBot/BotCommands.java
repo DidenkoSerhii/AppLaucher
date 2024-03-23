@@ -2,12 +2,15 @@ package org.CurrencyExchangeRateBot;
 
 import org.CurrencyExchangeRateBot.MonoBank.MonoJson;
 import org.CurrencyExchangeRateBot.MonoBank.ResponseMono;
+import org.CurrencyExchangeRateBot.Privat24.PrivatJson;
+import org.CurrencyExchangeRateBot.Privat24.ResponsePrivat;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 
 import java.io.IOException;
 import java.util.List;
 
 import static org.CurrencyExchangeRateBot.BotConstant.MONO_API;
+import static org.CurrencyExchangeRateBot.BotConstant.PRIVAT_API;
 
 public class BotCommands {
     final SendMessage sendMessage;
@@ -69,9 +72,38 @@ public class BotCommands {
                 }
                 MessageBuilder.sendMessage(chatId, String.valueOf(textForMessage), Buttons.start());
             }
-        }
-        else if(user.bank.equalsIgnoreCase("Приват")) { //Блок для ПриватБанку
-            //TODO
+        } else if(user.bank.equalsIgnoreCase("Приват")) { //Блок для ПриватБанку
+            List<PrivatJson> currencies = ResponsePrivat.get(PRIVAT_API);
+
+            if(user.currency.equals("USD")){
+
+
+                for (PrivatJson currency : currencies) {
+
+                    if (currency.getCcy().equals("USD")) {
+                        MessageBuilder.sendMessage(chatId, "Курс в ПриватБанк: USD/UAH\nКупівля: " + currency.getBuy() + "\nПродаж: " + currency.getSale(), Buttons.start());
+                    }
+                }
+            } else if(user.currency.equals("EUR")) {
+
+                for (PrivatJson currency : currencies) {
+
+                    if (currency.getCcy().equals("EUR")) {
+                        MessageBuilder.sendMessage(chatId, "Курс в ПриватБанк: EUR/UAH\nКупівля: " + currency.getBuy() + "\nПродаж: " + currency.getSale(), Buttons.start());
+                    }
+                }
+            } else if(user.currency.contains("USD") && user.currency.contains("EUR")) {
+                StringBuilder textForMessage = new StringBuilder();
+                for (PrivatJson currency : currencies) {
+
+                    if (currency.getCcy().equals("USD")) {
+                        textForMessage.append("Курс в ПриватБанк: USD/UAH\nКупівля: ").append(currency.getBuy()).append("\nПродаж: ").append(currency.getSale()).append("\n");
+                    } else {
+                        textForMessage.append("Курс в ПриватБанк: EUR/UAH\nКупівля: ").append(currency.getBuy()).append("\nПродаж: ").append(currency.getSale()).append("\n");
+                    }
+                }
+                MessageBuilder.sendMessage(chatId, String.valueOf(textForMessage), Buttons.start());
+            }
         } else if(user.bank.equalsIgnoreCase("НБУ")) { //Блок для НБУ
             //TODO
         }
