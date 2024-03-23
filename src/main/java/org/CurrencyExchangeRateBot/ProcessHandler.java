@@ -22,10 +22,16 @@ public class ProcessHandler {
         Log.Info(username, messageText);
     }
 
-    public void callbackQuery(String callbackData, long chatIdBackQuery) {
+    public void callbackQuery(String callbackData, long chatIdBackQuery) throws IOException {
         switch (callbackData) {
 
             case " НАЛАШТУВАННЯ", " НАЗАД" -> botCommands.settingsMessage(chatIdBackQuery);
+
+            case " ОТРИМАТИ ІНФО" -> botCommands.getInfo(chatIdBackQuery);
+
+            case " КІЛЬКІСТЬ ЗНАКІВ ПІСЛЯ КОМИ" -> MessageBuilder.sendMessage(chatIdBackQuery, "Оберіть кількість знаків після коми", Buttons.changeQuantityOfNumbers());
+
+            case " 2", " 3", " 4" -> botCommands.changeQuantityOfNumbers(callbackData, chatIdBackQuery);
         }
     }
 }

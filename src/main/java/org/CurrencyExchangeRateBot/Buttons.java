@@ -15,4 +15,9 @@ public class Buttons {
         return InlineKeyboardMarkupBuilder.buildMarkup(
                 new String[]{" Отримати інфо", " Налаштування"});
     }
+
+    public static InlineKeyboardMarkup changeQuantityOfNumbers() {
+        return InlineKeyboardMarkupBuilder.buildMarkup(
+                new String[]{" 2", " 3", " 4"});
+    }
 }
