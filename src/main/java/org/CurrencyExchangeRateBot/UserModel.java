@@ -3,7 +3,7 @@ package org.CurrencyExchangeRateBot;
 public class UserModel {
 
     final String currency;
-        final String bank;
+        String bank;
         final String time;
         final String number;
 

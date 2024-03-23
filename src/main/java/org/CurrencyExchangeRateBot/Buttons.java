@@ -18,4 +18,10 @@ public class Buttons {
         return InlineKeyboardMarkupBuilder.buildMarkup(
                 new String[]{" Отримати інфо", " Налаштування"});
     }
+    public static InlineKeyboardMarkup banks() {
+        return InlineKeyboardMarkupBuilder.buildMarkup(
+                new String[]{
+                        "ПриватБанк", "НБУ", "Монобанк"
+                });
+    }
 }

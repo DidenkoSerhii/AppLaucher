@@ -17,5 +17,9 @@ public class UserServices {
             USERS_SETTINGS.put(chatId, userModel);
         }
     }
+    public static void changeBank(long chatId, String bank) {
+        USERS_SETTINGS.get(chatId).bank = bank;
+        System.out.println("bank value is now:" + USERS_SETTINGS.get(chatId).bank);
+    }
 }
 

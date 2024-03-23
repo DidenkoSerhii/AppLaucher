@@ -23,6 +23,11 @@ public class ProcessHandler {
         switch (callbackData) {
 
             case " НАЛАШТУВАННЯ", " НАЗАД" -> botCommands.settingsMessage(chatIdBackQuery);
+            case " БАНК" -> botCommands.banksMessage(chatIdBackQuery);
+
+            case "МОНОБАНК" -> botCommands.monobankMessage(chatIdBackQuery);
+            case "НБУ" -> botCommands.nbuMessage(chatIdBackQuery);
+            case "ПРИВАТБАНК" -> botCommands.privatbankMessage(chatIdBackQuery);
         }
     }
 }

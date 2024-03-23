@@ -25,5 +25,20 @@ public class BotCommands {
     public void settingsMessage(long chatId) {
         MessageBuilder.sendMessage(chatId, "Налаштування", Buttons.setting());
     }
+    public void privatbankMessage(long chatId) {
+        new BanksButtonsReaction().privatbankButton(chatId);
+        MessageBuilder.sendMessage(chatId, "Налаштування", Buttons.setting());
+    }
+    public void nbuMessage(long chatId) {
+        new BanksButtonsReaction().nbuButton(chatId);
+        MessageBuilder.sendMessage(chatId, "Налаштування", Buttons.setting());
+    }
+    public void monobankMessage(long chatId) {
+        new BanksButtonsReaction().monobankButton(chatId);
+        MessageBuilder.sendMessage(chatId, "Налаштування", Buttons.setting());
+    }
+    public void banksMessage(long chatId) {
+        MessageBuilder.sendMessage(chatId, "Банк", Buttons.banks());
+    }
 
 }
