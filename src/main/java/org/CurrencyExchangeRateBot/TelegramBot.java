@@ -1,20 +1,76 @@
 package org.CurrencyExchangeRateBot;
+import lombok.SneakyThrows;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
+import org.telegram.telegrambots.meta.api.methods.commands.SetMyCommands;
+import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.api.objects.commands.BotCommand;
+import org.telegram.telegrambots.meta.api.objects.commands.scope.BotCommandScopeDefault;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+
+import java.io.IOException;
+import java.util.List;
+
+import static org.CurrencyExchangeRateBot.BotConstant.BOT_NAME;
+import static org.CurrencyExchangeRateBot.BotConstant.BOT_TOKEN;
 
 public class TelegramBot extends TelegramLongPollingBot {
-    @Override
-    public String getBotToken() {
-        return "6763227245:AAFuiHg27Wj4HsGRqBl5wkc8E6gcWnzSr8g";
+    private final ProcessHandler processHandler;
+
+    public TelegramBot() {
+
+        this.processHandler = new ProcessHandler(this);
+        List<BotCommand> botCommandList = BotCommandList.getBotCommandList();
+
+        try {
+            this.execute(new SetMyCommands(botCommandList, new BotCommandScopeDefault(), null));
+        } catch (TelegramApiException e) {
+            Log.Error(e);
+        }
     }
-
-    @Override
-    public void onUpdateReceived(Update update) {
-
-    }
-
     @Override
     public String getBotUsername() {
-        return "Currency_Changes_bot";
+        return BOT_NAME;
+    }
+
+    @Override
+    public String getBotToken() {
+        return BOT_TOKEN;
+    }
+
+    @SneakyThrows
+    public void onUpdateReceived(Update update) {
+        long chatId;
+
+        String userName;
+        String receivedMessage;
+
+        if (update.hasMessage() && update.getMessage().hasText()) {
+            chatId = update.getMessage().getChatId();
+            userName = update.getMessage().getFrom().getFirstName();
+            receivedMessage = update.getMessage().getText();
+
+            try {
+                processHandler.message(receivedMessage, userName, chatId);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        if (update.hasCallbackQuery()) {
+            chatId = update.getCallbackQuery().getMessage().getChatId();
+
+            receivedMessage = update.getCallbackQuery().getData();
+
+            processHandler.callbackQuery(receivedMessage, chatId);
+        }
+    }
+
+    public void executeMessage(SendMessage message) {
+        try {
+            execute(message);
+        } catch (TelegramApiException e) {
+            Log.Error(e);
+        }
     }
 }
