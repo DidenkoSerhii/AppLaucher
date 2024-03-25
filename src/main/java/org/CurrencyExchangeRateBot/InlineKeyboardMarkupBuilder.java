@@ -22,6 +22,27 @@ public class InlineKeyboardMarkupBuilder {
 
         return markup;
     }
+    public static InlineKeyboardMarkup buildBanksMarkup(String[] buttonTexts, long chatId) {
+        List<List<InlineKeyboardButton>> keyboard = new ArrayList<>();
+
+        for (String buttonText : buttonTexts) {
+            if (UserServices.getBankFromUserServices(chatId).equalsIgnoreCase(buttonText)) {
+                InlineKeyboardButton button = new InlineKeyboardButton();
+                button.setText("✅ " + buttonText);
+                button.setCallbackData(buttonText.toUpperCase());
+                keyboard.add(List.of(button));
+            } else {
+                InlineKeyboardButton button = new InlineKeyboardButton();
+                button.setText(buttonText);
+                button.setCallbackData(buttonText.toUpperCase());
+                keyboard.add(List.of(button));
+            }
+        }
+        InlineKeyboardMarkup markup = new InlineKeyboardMarkup();
+        markup.setKeyboard(keyboard);
+
+        return markup;
+    }
 
     public static InlineKeyboardMarkup buildCurrencyMarkup(long chatId) {
         UserModel userModel = UserServices.getUserSettings(chatId);

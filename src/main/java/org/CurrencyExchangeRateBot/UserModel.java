@@ -7,14 +7,14 @@ public class UserModel {
 
         Set<String> selectedCurrencies;
         final String currency;
-        String bank;
+        private String bank;
         final String time;
         final String number;
 
     public UserModel() {
         this.selectedCurrencies = new HashSet<>();
         this.currency = "USD";
-        this.bank = "Приват";
+        this.bank = "Приватбанк";
         this.time = "Вимкнути сповіщення";
         this.number = "2";
     }
@@ -23,6 +23,13 @@ public class UserModel {
         if (!selectedCurrencies.remove(currency)) {
             selectedCurrencies.add(currency);
         }
+    }
+
+    public void setBank(String bank) {
+        this.bank = bank;
+    }
+    public String getBank() {
+        return bank;
     }
 
     public boolean isCurrencySelected(String currency) {

@@ -18,11 +18,13 @@ public class UserServices {
         }
     }
     public static void changeBank(long chatId, String bank) {
-        USERS_SETTINGS.get(chatId).bank = bank;
-        System.out.println("bank value is now:" + USERS_SETTINGS.get(chatId).bank);
+        USERS_SETTINGS.get(chatId).setBank(bank);
     }
     public static UserModel getUserSettings(long chatId) {
         return USERS_SETTINGS.get(chatId);
+    }
+    public static String getBankFromUserServices(long chatId) {
+        return USERS_SETTINGS.get(chatId).getBank();
     }
 }
 
