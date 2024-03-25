@@ -16,11 +16,11 @@ public class Buttons {
         return InlineKeyboardMarkupBuilder.buildMarkup(
                 new String[]{" Отримати інфо", " Налаштування"});
     }
-    public static InlineKeyboardMarkup banks() {
-        return InlineKeyboardMarkupBuilder.buildMarkup(
+    public static InlineKeyboardMarkup banks(long chatId) {
+        return InlineKeyboardMarkupBuilder.buildBanksMarkup(
                 new String[]{
                         "ПриватБанк", "НБУ", "Монобанк"
-                });
+                }, chatId);
     }
 
     public static InlineKeyboardMarkup currency(long chatId) {

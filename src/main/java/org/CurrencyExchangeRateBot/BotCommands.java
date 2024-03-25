@@ -27,18 +27,18 @@ public class BotCommands {
     }
     public void privatbankMessage(long chatId) {
         new BanksButtonsReaction().privatbankButton(chatId);
-        MessageBuilder.sendMessage(chatId, "Налаштування", Buttons.setting());
+        MessageBuilder.sendMessage(chatId, "Ласкаво просимо. Цей бот допоможе відслідковувати актуальні курси валют!", Buttons.start());
     }
     public void nbuMessage(long chatId) {
         new BanksButtonsReaction().nbuButton(chatId);
-        MessageBuilder.sendMessage(chatId, "Налаштування", Buttons.setting());
+        MessageBuilder.sendMessage(chatId, "Ласкаво просимо. Цей бот допоможе відслідковувати актуальні курси валют!", Buttons.start());
     }
     public void monobankMessage(long chatId) {
         new BanksButtonsReaction().monobankButton(chatId);
-        MessageBuilder.sendMessage(chatId, "Налаштування", Buttons.setting());
+        MessageBuilder.sendMessage(chatId, "Ласкаво просимо. Цей бот допоможе відслідковувати актуальні курси валют!", Buttons.start());
     }
     public void banksMessage(long chatId) {
-        MessageBuilder.sendMessage(chatId, "Банк", Buttons.banks());
+        MessageBuilder.sendMessage(chatId, "Банк", Buttons.banks(chatId));
     }
 
     public void currencyMessage(long chatId) {
