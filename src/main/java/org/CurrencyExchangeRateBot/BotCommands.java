@@ -38,7 +38,7 @@ public class BotCommands {
         MessageBuilder.sendMessage(chatId, "Налаштування", Buttons.setting());
     }
     public void banksMessage(long chatId) {
-        MessageBuilder.sendMessage(chatId, "Банк", Buttons.banks());
+        MessageBuilder.sendMessage(chatId, "Банк", Buttons.banks(chatId));
     }
 
 }
