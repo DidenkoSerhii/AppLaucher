@@ -33,15 +33,15 @@ public class BotCommands {
     }
     public void privatbankMessage(long chatId) {
         new BanksButtonsReaction().privatbankButton(chatId);
-        MessageBuilder.sendMessage(chatId, "Ласкаво просимо. Цей бот допоможе відслідковувати актуальні курси валют!", Buttons.start());
+        MessageBuilder.sendMessage(chatId, "======МЕНЮ======", Buttons.start());
     }
     public void nbuMessage(long chatId) {
         new BanksButtonsReaction().nbuButton(chatId);
-        MessageBuilder.sendMessage(chatId, "Ласкаво просимо. Цей бот допоможе відслідковувати актуальні курси валют!", Buttons.start());
+        MessageBuilder.sendMessage(chatId, "======МЕНЮ======", Buttons.start());
     }
     public void monobankMessage(long chatId) {
         new BanksButtonsReaction().monobankButton(chatId);
-        MessageBuilder.sendMessage(chatId, "Ласкаво просимо. Цей бот допоможе відслідковувати актуальні курси валют!", Buttons.start());
+        MessageBuilder.sendMessage(chatId, "======МЕНЮ======", Buttons.start());
     }
     public void banksMessage(long chatId) {
         MessageBuilder.sendMessage(chatId, "Банк", Buttons.banks(chatId));
@@ -49,6 +49,7 @@ public class BotCommands {
 
     public void currencyMessage(long chatId) {
         MessageBuilder.sendMessage(chatId, "Виберіть валюту", Buttons.currency(chatId));
+        MessageBuilder.sendMessage(chatId, "======МЕНЮ======", Buttons.start());
     }
 
     public void getInfo(long chatId) throws IOException {
@@ -84,6 +85,11 @@ public class BotCommands {
                 MessageBuilder.sendMessage(chatId, String.valueOf(textForMessage), Buttons.start());
             }
         }
+    }
+
+    public void changeQuantityOfNumbers(String callbackData, long chatId) {
+        UserServices.getUserSettings(chatId).setNumber(Integer.parseInt(callbackData.trim()));
+        MessageBuilder.sendMessage(chatId, "======МЕНЮ======", Buttons.start());
     }
 
 }

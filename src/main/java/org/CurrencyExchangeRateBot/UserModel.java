@@ -8,7 +8,7 @@ public class UserModel {
         private final Set<String> selectedCurrencies;
         private String bank;
         final String time;
-        private final int number;
+        private int number;
 
     public UserModel() {
         this.selectedCurrencies = new HashSet<>();
@@ -27,6 +27,11 @@ public class UserModel {
     public void setBank(String bank) {
         this.bank = bank;
     }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
     public String getBank() {
         return bank;
     }

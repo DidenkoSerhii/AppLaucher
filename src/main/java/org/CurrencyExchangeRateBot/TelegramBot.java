@@ -66,7 +66,7 @@ public class TelegramBot extends TelegramLongPollingBot {
             receivedMessage = update.getCallbackQuery().getData();
 
             try {
-                processHandler.callbackQuery(receivedMessage, chatId, chatId);
+                processHandler.callbackQuery(receivedMessage, chatId);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
