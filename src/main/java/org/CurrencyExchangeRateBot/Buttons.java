@@ -26,4 +26,9 @@ public class Buttons {
     public static InlineKeyboardMarkup currency(long chatId) {
         return InlineKeyboardMarkupBuilder.buildCurrencyMarkup(chatId);
     }
+
+    public static InlineKeyboardMarkup quantityOfNumbers(long chatId) {
+        return InlineKeyboardMarkupBuilder.buildQuantityOfNumbersMarkup(
+                new String[]{"2", "3", "4"}, chatId);
+    }
 }

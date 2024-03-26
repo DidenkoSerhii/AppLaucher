@@ -64,4 +64,26 @@ public class InlineKeyboardMarkupBuilder {
 
         return markup;
     }
+
+    public static InlineKeyboardMarkup buildQuantityOfNumbersMarkup(String[] buttonTexts, long chatId) {
+        List<List<InlineKeyboardButton>> keyboard = new ArrayList<>();
+
+        for (String buttonText : buttonTexts) {
+            InlineKeyboardButton button = new InlineKeyboardButton();
+
+            if (Integer.parseInt(buttonText) == UserServices.getUserSettings(chatId).getNumber()) {
+                button.setText(buttonText + "✅");
+            } else {
+                button.setText(buttonText);
+            }
+
+            button.setCallbackData(buttonText.toUpperCase());
+            keyboard.add(List.of(button));
+        }
+
+        InlineKeyboardMarkup markup = new InlineKeyboardMarkup();
+        markup.setKeyboard(keyboard);
+
+        return markup;
+    }
 }

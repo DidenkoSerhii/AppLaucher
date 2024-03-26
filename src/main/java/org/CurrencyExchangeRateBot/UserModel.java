@@ -5,18 +5,17 @@ import java.util.Set;
 
 public class UserModel {
 
-        Set<String> selectedCurrencies;
-        final String currency;
+        private final Set<String> selectedCurrencies;
         private String bank;
         final String time;
-        final String number;
+        private int number;
 
     public UserModel() {
         this.selectedCurrencies = new HashSet<>();
-        this.currency = "USD";
-        this.bank = "Приватбанк";
+        selectedCurrencies.add("USD");
+        this.bank = "Монобанк";
         this.time = "Вимкнути сповіщення";
-        this.number = "2";
+        this.number = 2;
     }
 
     public void toggleCurrency(String currency) {
@@ -28,8 +27,21 @@ public class UserModel {
     public void setBank(String bank) {
         this.bank = bank;
     }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
     public String getBank() {
         return bank;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public Set<String> getSelectedCurrencies() {
+        return selectedCurrencies;
     }
 
     public boolean isCurrencySelected(String currency) {

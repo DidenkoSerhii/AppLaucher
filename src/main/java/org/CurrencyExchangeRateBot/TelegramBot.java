@@ -9,6 +9,7 @@ import org.telegram.telegrambots.meta.api.objects.commands.BotCommand;
 import org.telegram.telegrambots.meta.api.objects.commands.scope.BotCommandScopeDefault;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
+import java.io.IOException;
 import java.util.List;
 
 import static org.CurrencyExchangeRateBot.BotConstant.BOT_NAME;
@@ -52,7 +53,11 @@ public class TelegramBot extends TelegramLongPollingBot {
             userName = update.getMessage().getFrom().getFirstName();
             receivedMessage = update.getMessage().getText();
 
-            processHandler.message(receivedMessage, userName, chatId);
+            try {
+                processHandler.message(receivedMessage, userName, chatId);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
 
         if (update.hasCallbackQuery()) {
@@ -60,7 +65,11 @@ public class TelegramBot extends TelegramLongPollingBot {
 
             receivedMessage = update.getCallbackQuery().getData();
 
-            processHandler.callbackQuery(receivedMessage, chatId, chatId);
+            try {
+                processHandler.callbackQuery(receivedMessage, chatId);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 
