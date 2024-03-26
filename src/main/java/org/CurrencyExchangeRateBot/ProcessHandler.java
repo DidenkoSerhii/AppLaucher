@@ -24,6 +24,7 @@ public class ProcessHandler {
     }
 
     public void callbackQuery(String callbackData, long chatIdBackQuery) throws IOException {
+        Log.Info(Long.toString(chatIdBackQuery), callbackData);
         switch (callbackData) {
 
             case " НАЛАШТУВАННЯ", " НАЗАД" -> botCommands.settingsMessage(chatIdBackQuery);
@@ -34,6 +35,11 @@ public class ProcessHandler {
             case "ПРИВАТБАНК" -> botCommands.privatbankMessage(chatIdBackQuery);
             case " ВАЛЮТА" -> botCommands.currencyMessage(chatIdBackQuery);
             case " ОТРИМАТИ ІНФО" -> botCommands.printCourse(chatIdBackQuery);
+            case " ЧАС СПОВІЩЕНЬ" -> MessageBuilder.sendMessage(chatIdBackQuery, "Оберіть час сповіщення про курс", Buttons.timeIntervals(chatIdBackQuery));
+            case    " 9:00","10:00","11:00",
+                    "12:00","13:00","14:00",
+                    "15:00","16:00","17:00",
+                    "18:00","Вимкнути сповіщення" -> botCommands.changeTimeOfNotifycation(callbackData, chatIdBackQuery);
             case " КІЛЬКІСТЬ ЗНАКІВ ПІСЛЯ КОМИ" -> MessageBuilder.sendMessage(chatIdBackQuery, "Оберіть кількість знаків після коми", Buttons.quantityOfNumbers(chatIdBackQuery));
             case "2", "3", "4" -> botCommands.changeQuantityOfNumbers(callbackData, chatIdBackQuery);
             default -> {

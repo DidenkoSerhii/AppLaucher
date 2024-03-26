@@ -86,4 +86,25 @@ public class InlineKeyboardMarkupBuilder {
 
         return markup;
     }
+    public static InlineKeyboardMarkup buildTimeOfNotificationMarkup(String[] buttonTexts, long chatId) {
+        List<List<InlineKeyboardButton>> keyboard = new ArrayList<>();
+
+        for (String buttonText : buttonTexts) {
+            InlineKeyboardButton button = new InlineKeyboardButton();
+
+            if (buttonText.equals(UserServices.getUserSettings(chatId).getTime()))  {
+                button.setText(buttonText + "✅");
+            } else {
+                button.setText(buttonText);
+            }
+
+            button.setCallbackData(buttonText.toUpperCase());
+            keyboard.add(List.of(button));
+        }
+
+        InlineKeyboardMarkup markup = new InlineKeyboardMarkup();
+        markup.setKeyboard(keyboard);
+
+        return markup;
+    }
 }

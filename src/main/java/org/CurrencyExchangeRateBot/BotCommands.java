@@ -100,5 +100,9 @@ public class BotCommands {
         }
         return String.valueOf(course);
     }
+    public void changeTimeOfNotifycation(String callbackData, long chatId) {
+        UserServices.getUserSettings(chatId).setTime(callbackData);
+        MessageBuilder.sendMessage(chatId, "Сповіщення встанавлено на "+callbackData, Buttons.start());
+    }
 
 }
