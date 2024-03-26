@@ -25,6 +25,7 @@ public class CurrencyInfo {
     private String buy;
     @JsonAlias({"rateSell", "sale"})
     private String sale;
+    private static final ObjectMapper mapper = new ObjectMapper();
 
     public void refactorCurrencyInfo() {
         if(currency == null) {
@@ -56,9 +57,6 @@ public class CurrencyInfo {
             while((line = reader.readLine()) != null) {
                 responseJson.append(line);
             }
-
-            ObjectMapper mapper = new ObjectMapper();
-
             return mapper.readValue(String.valueOf(responseJson), new TypeReference<>() {});
 
         }

@@ -16,7 +16,7 @@ public class ProcessHandler {
 
             case "/setting" -> botCommands.settingsMessage(chatId);
 
-            case "/info" -> botCommands.getInfo(chatId);
+            case "/info" -> botCommands.printCourse(chatId);
         }
 
 
@@ -33,7 +33,7 @@ public class ProcessHandler {
             case "НБУ" -> botCommands.nbuMessage(chatIdBackQuery);
             case "ПРИВАТБАНК" -> botCommands.privatbankMessage(chatIdBackQuery);
             case " ВАЛЮТА" -> botCommands.currencyMessage(chatIdBackQuery);
-            case " ОТРИМАТИ ІНФО" -> botCommands.getInfo(chatIdBackQuery);
+            case " ОТРИМАТИ ІНФО" -> botCommands.printCourse(chatIdBackQuery);
             case " КІЛЬКІСТЬ ЗНАКІВ ПІСЛЯ КОМИ" -> MessageBuilder.sendMessage(chatIdBackQuery, "Оберіть кількість знаків після коми", Buttons.quantityOfNumbers(chatIdBackQuery));
             case "2", "3", "4" -> botCommands.changeQuantityOfNumbers(callbackData, chatIdBackQuery);
             default -> {

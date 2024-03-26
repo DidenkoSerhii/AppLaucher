@@ -5,6 +5,7 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.CurrencyExchangeRateBot.BotConstant.*;
@@ -52,37 +53,19 @@ public class BotCommands {
         MessageBuilder.sendMessage(chatId, "======МЕНЮ======", Buttons.start());
     }
 
-    public void getInfo(long chatId) throws IOException {
+    public void printCourse(long chatId) throws IOException {
         UserModel user = UserServices.getUserSettings(chatId);
-        List<CurrencyInfo> currencies = null;
-
-        if(user.getBank().contains("Монобанк")) {
-            currencies = CurrencyInfo.getInfoFromBank(MONO_API);
-        } else if(user.getBank().contains("Приватбанк")) {
-            currencies = CurrencyInfo.getInfoFromBank(PRIVAT_API);
-        } else if (user.getBank().contains("НБУ")) {
-            currencies = CurrencyInfo.getInfoFromBank(NBU_API);
-        }
+        List<CurrencyInfo> currencies = getCurrencies(user);
 
         if (currencies == null) {
             MessageBuilder.sendMessage(chatId, "Вибачте, виникла помилка з отриманням інформації від банку", Buttons.start());
         } else {
-
-            StringBuilder textForMessage = new StringBuilder();
-            for (CurrencyInfo currency : currencies) {
-                currency.refactorCurrencyInfo();
-                if(user.getSelectedCurrencies().contains(currency.getCurrency())) {
-                    textForMessage.append("Курс в ").append(user.getBank()).append(": ").append(currency.getCurrency()).append("/UAH\nКупівля: ").
-                            append(new DecimalFormat("#." + "0".repeat(Math.max(0, user.getNumber()))).format(currency.getBuy())).
-                            append("\nПродаж: ").
-                            append(new DecimalFormat("#." + "0".repeat(Math.max(0, user.getNumber()))).format(currency.getSale())).append("\n");
-                }
-            }
+            String textForMessage = getCourse(currencies, user);
 
             if (textForMessage.isEmpty()) {
                 MessageBuilder.sendMessage(chatId, "Жодної валюти не обрано", Buttons.start());
             } else {
-                MessageBuilder.sendMessage(chatId, String.valueOf(textForMessage), Buttons.start());
+                MessageBuilder.sendMessage(chatId, textForMessage, Buttons.start());
             }
         }
     }
@@ -90,6 +73,32 @@ public class BotCommands {
     public void changeQuantityOfNumbers(String callbackData, long chatId) {
         UserServices.getUserSettings(chatId).setNumber(Integer.parseInt(callbackData.trim()));
         MessageBuilder.sendMessage(chatId, "======МЕНЮ======", Buttons.start());
+    }
+
+    private List<CurrencyInfo> getCurrencies(UserModel user) throws IOException {
+        List<CurrencyInfo> currencies = new ArrayList<>();
+        if(user.getBank().contains("Монобанк")) {
+            currencies = CurrencyInfo.getInfoFromBank(MONO_API);
+        } else if(user.getBank().contains("Приватбанк")) {
+            currencies = CurrencyInfo.getInfoFromBank(PRIVAT_API);
+        } else if (user.getBank().contains("НБУ")) {
+            currencies = CurrencyInfo.getInfoFromBank(NBU_API);
+        }
+        return currencies;
+    }
+
+    private String getCourse(List<CurrencyInfo> currencies, UserModel user) {
+        StringBuilder course = new StringBuilder();
+        for (CurrencyInfo currency : currencies) {
+            currency.refactorCurrencyInfo();
+            if(user.getSelectedCurrencies().contains(currency.getCurrency())) {
+                course.append("Курс в ").append(user.getBank()).append(": ").append(currency.getCurrency()).append("/UAH\nКупівля: ").
+                        append(new DecimalFormat("#." + "0".repeat(Math.max(0, user.getNumber()))).format(currency.getBuy())).
+                        append("\nПродаж: ").
+                        append(new DecimalFormat("#." + "0".repeat(Math.max(0, user.getNumber()))).format(currency.getSale())).append("\n");
+            }
+        }
+        return String.valueOf(course);
     }
 
 }
