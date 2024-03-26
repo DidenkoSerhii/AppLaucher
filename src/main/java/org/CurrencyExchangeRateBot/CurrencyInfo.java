@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.Getter;
 
 import javax.net.ssl.HttpsURLConnection;
 import java.io.BufferedReader;
@@ -13,6 +14,7 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.List;
 
+@Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CurrencyInfo {
     @JsonProperty("currencyCodeA")
@@ -61,10 +63,6 @@ public class CurrencyInfo {
 
         }
         return null;
-    }
-
-    public String getCurrency() {
-        return currency;
     }
 
     public float getBuy() {
