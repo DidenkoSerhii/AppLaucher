@@ -102,6 +102,7 @@ public class BotCommands {
     }
     public void changeTimeOfNotifycation(String callbackData, long chatId) {
         UserServices.getUserSettings(chatId).setTime(callbackData);
+        DelayedMessageSender.SendDelayedMessage(callbackData,chatId );
         MessageBuilder.sendMessage(chatId, "Сповіщення встанавлено на "+callbackData, Buttons.start());
     }
 
