@@ -39,7 +39,8 @@ public class ProcessHandler {
             case    " 9:00","10:00","11:00",
                     "12:00","13:00","14:00",
                     "15:00","16:00","17:00",
-                    "18:00","Вимкнути сповіщення" -> botCommands.changeTimeOfNotifycation(callbackData, chatIdBackQuery);
+                    "18:00" -> botCommands.changeTimeOfNotifycation(callbackData, chatIdBackQuery);
+            case "Вимкнути сповіщення" -> botCommands.turnOffNotifycation(chatIdBackQuery);
             case " КІЛЬКІСТЬ ЗНАКІВ ПІСЛЯ КОМИ" -> MessageBuilder.sendMessage(chatIdBackQuery, "Оберіть кількість знаків після коми", Buttons.quantityOfNumbers(chatIdBackQuery));
             case "2", "3", "4" -> botCommands.changeQuantityOfNumbers(callbackData, chatIdBackQuery);
             default -> {

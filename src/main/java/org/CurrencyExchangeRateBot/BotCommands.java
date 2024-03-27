@@ -75,7 +75,7 @@ public class BotCommands {
         MessageBuilder.sendMessage(chatId, "======МЕНЮ======", Buttons.start());
     }
 
-    private List<CurrencyInfo> getCurrencies(UserModel user) throws IOException {
+    public List<CurrencyInfo> getCurrencies(UserModel user) throws IOException {
         List<CurrencyInfo> currencies = new ArrayList<>();
         if(user.getBank().contains("Монобанк")) {
             currencies = CurrencyInfo.getInfoFromBank(MONO_API);
@@ -87,7 +87,7 @@ public class BotCommands {
         return currencies;
     }
 
-    private String getCourse(List<CurrencyInfo> currencies, UserModel user) {
+    public String getCourse(List<CurrencyInfo> currencies, UserModel user) {
         StringBuilder course = new StringBuilder();
         for (CurrencyInfo currency : currencies) {
             currency.refactorCurrencyInfo();
@@ -103,6 +103,13 @@ public class BotCommands {
     public void changeTimeOfNotifycation(String callbackData, long chatId) {
         UserServices.getUserSettings(chatId).setTime(callbackData);
         MessageBuilder.sendMessage(chatId, "Сповіщення встанавлено на "+callbackData, Buttons.start());
+        TimerForMessage.startTimer(callbackData, chatId, this);
+    }
+
+    public void turnOffNotifycation(long chatId) {
+        UserServices.getUserSettings(chatId).setTime("Вимкнути сповіщення");
+        MessageBuilder.sendMessage(chatId, "Сповіщення вимкнено", Buttons.start());
+        TimerForMessage.stopTimer();
     }
 
 }
