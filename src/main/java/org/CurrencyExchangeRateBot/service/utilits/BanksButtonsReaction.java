@@ -1,4 +1,6 @@
-package org.CurrencyExchangeRateBot;
+package org.CurrencyExchangeRateBot.service.utilits;
+
+import org.CurrencyExchangeRateBot.service.utilits.ui.UserServices;
 
 public class BanksButtonsReaction {
     public void privatbankButton(long chatId) {

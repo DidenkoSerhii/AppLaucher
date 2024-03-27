@@ -1,4 +1,4 @@
-package org.CurrencyExchangeRateBot;
+package org.CurrencyExchangeRateBot.service.utilits.ui;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -1,4 +1,8 @@
-package org.CurrencyExchangeRateBot;
+package org.CurrencyExchangeRateBot.service.utilits;
+
+import org.CurrencyExchangeRateBot.service.utilits.commands.BotCommands;
+import org.CurrencyExchangeRateBot.service.utilits.ui.UserModel;
+import org.CurrencyExchangeRateBot.service.utilits.ui.UserServices;
 
 import java.io.IOException;
 import java.time.LocalTime;

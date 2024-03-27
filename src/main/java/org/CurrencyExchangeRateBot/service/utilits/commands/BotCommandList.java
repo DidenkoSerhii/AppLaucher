@@ -1,4 +1,4 @@
-package org.CurrencyExchangeRateBot;
+package org.CurrencyExchangeRateBot.service.utilits.commands;
 
 import org.telegram.telegrambots.meta.api.objects.commands.BotCommand;
 import java.util.ArrayList;

@@ -1,4 +1,5 @@
-package org.CurrencyExchangeRateBot;
+package org.CurrencyExchangeRateBot.service.utilits.ui;
+
 
 import java.util.HashMap;
 import java.util.Map;

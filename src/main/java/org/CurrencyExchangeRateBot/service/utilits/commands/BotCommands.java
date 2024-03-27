@@ -1,6 +1,11 @@
-package org.CurrencyExchangeRateBot;
+package org.CurrencyExchangeRateBot.service.utilits.commands;
 
 
+import org.CurrencyExchangeRateBot.banks.CurrencyInfo;
+import org.CurrencyExchangeRateBot.service.*;
+import org.CurrencyExchangeRateBot.service.utilits.*;
+import org.CurrencyExchangeRateBot.service.utilits.ui.UserModel;
+import org.CurrencyExchangeRateBot.service.utilits.ui.UserServices;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 
 import java.io.IOException;
@@ -8,7 +13,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.CurrencyExchangeRateBot.BotConstant.*;
+import static org.CurrencyExchangeRateBot.config.BotConstant.*;
 
 public class BotCommands {
      final SendMessage sendMessage;
@@ -102,7 +107,6 @@ public class BotCommands {
     }
     public void changeTimeOfNotifycation(String callbackData, long chatId) {
         UserServices.getUserSettings(chatId).setTime(callbackData);
-        DelayedMessageSender.SendDelayedMessage(callbackData,chatId );
         MessageBuilder.sendMessage(chatId, "Сповіщення встанавлено на "+callbackData, Buttons.start());
         TimerForMessage.startTimer(callbackData, chatId, this);
     }
