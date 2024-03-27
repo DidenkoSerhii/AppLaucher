@@ -1,5 +1,7 @@
-package org.CurrencyExchangeRateBot;
+package org.CurrencyExchangeRateBot.service.utils;
 
+import org.CurrencyExchangeRateBot.service.utils.ui.UserModel;
+import org.CurrencyExchangeRateBot.service.utils.ui.UserServices;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import java.util.ArrayList;

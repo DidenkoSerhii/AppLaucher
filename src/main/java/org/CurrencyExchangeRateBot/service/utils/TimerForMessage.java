@@ -1,4 +1,8 @@
-package org.CurrencyExchangeRateBot;
+package org.CurrencyExchangeRateBot.service.utils;
+
+import org.CurrencyExchangeRateBot.service.utils.commands.BotCommands;
+import org.CurrencyExchangeRateBot.service.utils.ui.UserModel;
+import org.CurrencyExchangeRateBot.service.utils.ui.UserServices;
 
 import java.io.IOException;
 import java.time.LocalTime;
@@ -17,7 +21,7 @@ public class TimerForMessage {
         chatId = chatIdCallback;
         command = botCommands;
         date = time;
-        long delay = (Integer.parseInt(time.substring(0, time.indexOf(':'))) - now.getHour()) * 60L + (53 - now.getMinute()) * 60 * 1000 - now.getSecond() * 1000 - now.getNano() / 1000000;
+        long delay = (Integer.parseInt(time.substring(0, time.indexOf(':'))) - now.getHour()) * 60L + now.getMinute() * 60 * 1000 - now.getSecond() * 1000 - now.getNano() / 1000000;
         if (delay < 0) {
             delay += 24 * 60 * 60 * 1000;
         }
@@ -30,7 +34,7 @@ public class TimerForMessage {
         public void run() {
             UserModel user = UserServices.getUserSettings(chatId);
             try {
-                MessageBuilder.sendMessage(chatId, command.getCourse(command.getCurrencies(user), user));
+                MessageBuilder.sendMessage(chatId, command.getCourse(command.getCurrencies(user), user), Buttons.start());
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

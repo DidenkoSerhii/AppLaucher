@@ -1,6 +1,11 @@
-package org.CurrencyExchangeRateBot;
+package org.CurrencyExchangeRateBot.service.utils.commands;
 
 
+import org.CurrencyExchangeRateBot.banks.CurrencyInfo;
+import org.CurrencyExchangeRateBot.service.*;
+import org.CurrencyExchangeRateBot.service.utils.*;
+import org.CurrencyExchangeRateBot.service.utils.ui.UserModel;
+import org.CurrencyExchangeRateBot.service.utils.ui.UserServices;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 
 import java.io.IOException;
@@ -8,7 +13,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.CurrencyExchangeRateBot.BotConstant.*;
+import static org.CurrencyExchangeRateBot.config.BotConstant.*;
 
 public class BotCommands {
      final SendMessage sendMessage;

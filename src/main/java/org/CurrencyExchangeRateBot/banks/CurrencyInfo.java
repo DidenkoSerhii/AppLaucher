@@ -1,4 +1,4 @@
-package org.CurrencyExchangeRateBot;
+package org.CurrencyExchangeRateBot.banks;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;

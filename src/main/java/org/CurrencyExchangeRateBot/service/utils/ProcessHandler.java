@@ -1,4 +1,8 @@
-package org.CurrencyExchangeRateBot;
+package org.CurrencyExchangeRateBot.service.utils;
+
+import org.CurrencyExchangeRateBot.service.TelegramBot;
+import org.CurrencyExchangeRateBot.service.utils.commands.BotCommands;
+import org.CurrencyExchangeRateBot.service.utils.ui.UserServices;
 
 import java.io.IOException;
 
@@ -40,7 +44,7 @@ public class ProcessHandler {
                     "12:00","13:00","14:00",
                     "15:00","16:00","17:00",
                     "18:00" -> botCommands.changeTimeOfNotifycation(callbackData, chatIdBackQuery);
-            case "Вимкнути сповіщення" -> botCommands.turnOffNotifycation(chatIdBackQuery);
+            case "ВИМКНУТИ СПОВІЩЕННЯ" -> botCommands.turnOffNotifycation(chatIdBackQuery);
             case " КІЛЬКІСТЬ ЗНАКІВ ПІСЛЯ КОМИ" -> MessageBuilder.sendMessage(chatIdBackQuery, "Оберіть кількість знаків після коми", Buttons.quantityOfNumbers(chatIdBackQuery));
             case "2", "3", "4" -> botCommands.changeQuantityOfNumbers(callbackData, chatIdBackQuery);
             default -> {
