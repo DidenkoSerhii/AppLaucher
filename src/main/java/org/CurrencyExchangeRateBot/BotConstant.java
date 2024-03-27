@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class BotConstant {
-    public static final String BOT_NAME = "Currency_Changes_bot";
+    public static final String BOT_NAME = "test11111122222_bot";
     public static String BOT_TOKEN;
     public static final String PRIVAT_API = "https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5";
     public static final String MONO_API = "https://api.monobank.ua/bank/currency";

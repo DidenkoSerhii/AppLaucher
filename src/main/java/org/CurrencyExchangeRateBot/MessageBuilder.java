@@ -21,4 +21,11 @@ public class MessageBuilder {
 
         telegramBot.executeMessage(sendMessage);
     }
+
+    public static void sendMessage(long chatId, String answer) {
+        sendMessage.setChatId(chatId);
+        sendMessage.setText(answer);
+
+        telegramBot.executeMessage(sendMessage);
+    }
 }
