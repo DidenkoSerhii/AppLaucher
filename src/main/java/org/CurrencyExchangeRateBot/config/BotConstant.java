@@ -1,4 +1,4 @@
-package org.CurrencyExchangeRateBot;
+package org.CurrencyExchangeRateBot.config;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;

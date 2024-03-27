@@ -1,6 +1,7 @@
-package org.CurrencyExchangeRateBot;
+package org.CurrencyExchangeRateBot.service.utilits;
 
 
+import org.CurrencyExchangeRateBot.service.TelegramBot;
 
 public class EditMessage {
 

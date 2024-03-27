@@ -1,5 +1,6 @@
-package org.CurrencyExchangeRateBot;
+package org.CurrencyExchangeRateBot.service.utilits;
 
+import org.CurrencyExchangeRateBot.service.TelegramBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 

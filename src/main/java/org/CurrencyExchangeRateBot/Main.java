@@ -1,5 +1,7 @@
 package org.CurrencyExchangeRateBot;
 
+import org.CurrencyExchangeRateBot.config.BotConstant;
+import org.CurrencyExchangeRateBot.service.TelegramBot;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;

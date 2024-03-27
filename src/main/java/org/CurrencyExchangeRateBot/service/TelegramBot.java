@@ -1,6 +1,9 @@
-package org.CurrencyExchangeRateBot;
+package org.CurrencyExchangeRateBot.service;
 
 import lombok.SneakyThrows;
+import org.CurrencyExchangeRateBot.service.utilits.commands.BotCommandList;
+import org.CurrencyExchangeRateBot.service.utilits.Log;
+import org.CurrencyExchangeRateBot.service.utilits.ProcessHandler;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.commands.SetMyCommands;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -12,8 +15,8 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import java.io.IOException;
 import java.util.List;
 
-import static org.CurrencyExchangeRateBot.BotConstant.BOT_NAME;
-import static org.CurrencyExchangeRateBot.BotConstant.BOT_TOKEN;
+import static org.CurrencyExchangeRateBot.config.BotConstant.BOT_NAME;
+import static org.CurrencyExchangeRateBot.config.BotConstant.BOT_TOKEN;
 
 
 public class TelegramBot extends TelegramLongPollingBot {

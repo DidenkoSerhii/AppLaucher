@@ -1,4 +1,4 @@
-package org.CurrencyExchangeRateBot;
+package org.CurrencyExchangeRateBot.service.utilits;
 
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
